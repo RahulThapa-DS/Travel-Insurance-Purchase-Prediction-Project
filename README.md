@@ -3,7 +3,30 @@
 An end-to-end Data Science and Machine Learning platform analyzing customer demographic profiles, household financial metrics, travel history, and health risk factors to forecast travel insurance purchase intent using Python.
 
 ---
+## ⚠️ Challenges & Future Improvements
 
+### 🚧 1. Challenges Encountered
+
+* **Class Imbalance & Data Reduction:** Removing 738 duplicate entries reduced the dataset from 1,987 to **1,249 unique records**, restricting the available training signal.
+* **Low Minority Recall:** Models struggled to detect positive buyers (`target = 1`), with Recall ranging between **34.02% and 44.33%**. While Precision remained high (up to 85.42% on Tuned XGBoost), over half of actual buyers went undetected (False Negatives).
+* **Missing High-Signal Attributes:** The raw dataset relies on basic demographic proxies (`age`, `annualincome`) rather than trip-specific context (e.g., destination country/region, trip cost, duration, travel type).
+
+---
+
+### 🚀 2. Potential Improvements for Accuracy
+
+#### A. Data Rebalancing & Threshold Optimization
+* **Synthetic Oversampling:** Apply **SMOTE** or **ADASYN** within the cross-validation pipeline to generate synthetic minority instances without introducing data leakage.
+* **Decision Threshold Tuning:** Adjust the default decision threshold (`0.50` down to `0.30–0.40`) using Precision-Recall (PR) curve analysis to increase Recall and optimize overall F1-score.
+* **Cost-Sensitive Learning:** Introduce class weight adjustments (`scale_pos_weight` in XGBoost / `class_weight='balanced'` in Random Forest) to penalize False Negatives.
+
+#### B. Advanced Feature Engineering
+* **Income Transformations:** Apply log-transformations (`np.log1p`) or quantile binning to `annualincome` and `income_per_family_member` to reduce variance and outlier impact.
+* **Interaction Features:** Combine health metrics with travel demographics (e.g., `chronicdiseases × age` or `chronicdiseases × evertravelledabroad`).
+
+#### C. Ensembling & Optimization Strategy
+* **Model Stacking:** Implement a `StackingClassifier` pairing **Gradient Boosting** and **XGBoost** with a meta-learner (e.g., Logistic Regression).
+* **Bayesian Optimization:** Utilize **Optuna** or `BayesSearchCV` for finer hyperparameter tuning (`subsample`, `colsample_bytree`, `max_depth`, `learning_rate`).
 ## 📌 Project Overview
 
 This repository contains data preprocessing pipelines, feature engineering, exploratory data analysis (EDA), and machine learning models designed to extract actionable risk analytics and classify potential travel insurance buyers from customer dataset records.
