@@ -1,3 +1,22 @@
+# 🧳 Travel Insurance Prediction & Analytics System
+
+An end-to-end Data Science and Machine Learning platform analyzing customer demographic profiles, household financial metrics, travel history, and health risk factors to forecast travel insurance purchase intent using Python.
+
+---
+
+## 📌 Project Overview
+
+This repository contains data preprocessing pipelines, feature engineering, exploratory data analysis (EDA), and machine learning models designed to extract actionable risk analytics and classify potential travel insurance buyers from customer dataset records.
+
+### 🎯 Key Objectives
+
+* **Data Cleansing & Transformation:** Load raw customer data, drop redundant index columns, standardize target labels to `target`, and eliminate duplicate records to ensure model integrity (reducing initial 1,987 rows to 1,249 unique records).
+* **Domain Feature Engineering:** Derive interaction and financial features, including household per-capita income (`income_per_family_member`), risk profile indicators (`high_risk_traveler`), and income threshold brackets (`is_high_income`).
+* **Exploratory Data Analysis (EDA):** Generate comprehensive visual distributions across all 12 feature columns to identify key drivers of insurance adoption.
+* **Predictive Outcome Modeling:** Train, tune, and evaluate classification algorithms (Logistic Regression, Random Forest, and XGBoost) to forecast customer purchasing decisions.
+
+---
+
 ## 🧠 Methodology, Dataset & EDA Summary
 
 ### 1. Methodology & Model Selection
